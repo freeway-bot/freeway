@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreeWay Logistics | Tech Platform Китай → Россия</title>
+    <meta name="description" content="Технологичная платформа для логистики Китай → Россия. AI-аналитика, автоматизация, трекинг в реальном времени.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +22,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #F8FAFC 0%, #F0F9FF 100%);
+            overflow-x: hidden;
         }
         
         .hero-gradient {
@@ -51,10 +53,10 @@
         .route-line {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
-            animation: draw 3s ease-in-out forwards;
+            animation: dash 3s ease-in-out forwards;
         }
         
-        @keyframes draw {
+        @keyframes dash {
             to {
                 stroke-dashoffset: 0;
             }
@@ -65,276 +67,235 @@
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
         }
         
-        .scroll-fade {
+        .scroll-animate {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
         
-        .scroll-fade.visible {
+        .scroll-animate.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .nav-scroll {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .form-input {
+            transition: all 0.3s ease;
+            border: 1px solid #CBD5E1;
         }
         
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .form-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .stat-number {
+            font-feature-settings: "tnum";
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="relative">
     <!-- Навигация -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="container mx-auto px-6 py-4">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-xl"></i>
                     </div>
-                    <span class="text-2xl font-bold">FreeWay<span class="gradient-text">Logistics</span></span>
+                    <div>
+                        <span class="font-bold text-2xl text-gray-900">FreeWay<span class="text-blue-600">Tech</span></span>
+                        <div class="text-xs text-gray-500 -mt-1">AI Logistics Platform</div>
+                    </div>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#platform" class="text-gray-600 hover:text-blue-600 font-medium">Платформа</a>
-                    <a href="#features" class="text-gray-600 hover:text-blue-600 font-medium">Возможности</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-blue-600 font-medium">Тарифы</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium">Контакты</a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Возможности</a>
+                    <a href="#platform" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Платформа</a>
+                    <a href="#tech" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Технологии</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Тарифы</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Контакты</a>
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <button class="hidden md:block text-blue-600 font-medium hover:text-blue-800">
-                        Войти
+                    <a href="https://wa.me/78001234567" target="_blank" class="hidden xl:flex items-center space-x-2 text-gray-700 hover:text-blue-600">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="font-medium">WhatsApp</span>
+                    </a>
+                    <button onclick="scrollToContact()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-200 transition-all duration-300">
+                        Демо доступ
                     </button>
-                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow">
-                        Начать бесплатно
+                    <button id="mobile-menu" class="lg:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
                     </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div id="mobile-nav" class="lg:hidden hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium py-2">Возможности</a>
+                    <a href="#platform" class="text-gray-700 hover:text-blue-600 font-medium py-2">Платформа</a>
+                    <a href="#tech" class="text-gray-700 hover:text-blue-600 font-medium py-2">Технологии</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium py-2">Тарифы</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium py-2">Контакты</a>
+                    <a href="https://wa.me/78001234567" target="_blank" class="text-green-600 font-medium py-2 flex items-center space-x-2">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero секция -->
-    <section class="pt-20 pb-32 hero-gradient text-white overflow-hidden">
-        <div class="container mx-auto px-6 relative">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
-                    <span class="text-sm font-medium">🚀 ТЕХНОЛОГИЧНАЯ ЛОГИСТИКА</span>
-                    <span class="text-white/50">•</span>
-                    <span class="text-sm">КИТАЙ → РОССИЯ</span>
+    <section class="hero-gradient pt-32 pb-20 md:pb-32 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
+            <div class="absolute inset-0" style="background: radial-gradient(circle at 70% 30%, #FFFFFF 0%, transparent 70%);"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+                    <span class="text-white/90 text-sm font-medium">🚀 Технологичная логистика</span>
+                    <span class="text-white/70 text-sm">•</span>
+                    <span class="text-white/90 text-sm font-medium">AI + Автоматизация</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    Логистическая платформа
-                    <span class="block">нового поколения</span>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Логистика будущего<br>
+                    <span class="text-blue-200">уже здесь</span>
                 </h1>
                 
-                <p class="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-                    Автоматизированная система доставки грузов из Китая в Россию. 
-                    Отслеживание в реальном времени, AI-оптимизация маршрутов и прозрачное ценообразование.
+                <p class="text-lg md:text-xl text-white/80 mb-10 max-w-3xl">
+                    AI-платформа для автоматизации поставок из Китая в Россию. Трекинг в реальном времени, 
+                    прогнозная аналитика, автоматическое таможенное оформление.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                    <button class="bg-white text-blue-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all flex items-center justify-center space-x-3">
-                        <span>Демо платформы</span>
-                        <i class="fas fa-play"></i>
+                <div class="flex flex-col sm:flex-row gap-4 mb-16">
+                    <button onclick="scrollToContact()" class="bg-white text-blue-800 px-6 sm:px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-3">
+                        <span>Запросить демо</span>
+                        <i class="fas fa-arrow-right"></i>
                     </button>
-                    <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center space-x-3">
-                        <i class="fab fa-github"></i>
-                        <span>API Документация</span>
-                    </button>
+                    <a href="#features" class="bg-transparent border-2 border-white/30 text-white px-6 sm:px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 flex items-center justify-center space-x-3">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Смотреть видео</span>
+                    </a>
                 </div>
                 
-                <!-- Интерактивная карта -->
-                <div class="relative h-64 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="relative w-full max-w-2xl">
-                            <!-- Упрощенная SVG карта -->
-                            <svg viewBox="0 0 800 200" class="w-full h-48">
-                                <!-- Китай -->
-                                <g class="floating" style="animation-delay: 0s;">
-                                    <circle cx="150" cy="100" r="20" fill="#3B82F6" opacity="0.8"/>
-                                    <text x="150" y="140" text-anchor="middle" fill="white" font-weight="bold">Китай</text>
-                                    <circle cx="150" cy="100" r="5" fill="white" class="pulse-dot"/>
-                                </g>
-                                
-                                <!-- Россия -->
-                                <g class="floating" style="animation-delay: 0.5s;">
-                                    <circle cx="650" cy="100" r="20" fill="#8B5CF6" opacity="0.8"/>
-                                    <text x="650" y="140" text-anchor="middle" fill="white" font-weight="bold">Россия</text>
-                                    <circle cx="650" cy="100" r="5" fill="white" class="pulse-dot"/>
-                                </g>
-                                
-                                <!-- Маршрут -->
-                                <path d="M170,100 C300,50 500,150 630,100" stroke="white" stroke-width="2" fill="none" stroke-dasharray="10,5" class="route-line"/>
-                                
-                                <!-- Грузовой икон -->
-                                <g class="floating" style="animation-delay: 1s;">
-                                    <circle cx="400" cy="100" r="15" fill="#F59E0B"/>
-                                    <text x="400" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">🚚</text>
-                                </g>
-                            </svg>
-                        </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-2 stat-number">99.2%</div>
+                        <div class="text-white/70 text-xs md:text-sm">Точность прогнозов</div>
                     </div>
-                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/80 text-sm">
-                        <i class="fas fa-sync-alt mr-2"></i>Обновление данных в реальном времени
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-2 stat-number">24/7</div>
+                        <div class="text-white/70 text-xs md:text-sm">AI мониторинг</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-2 stat-number">-35%</div>
+                        <div class="text-white/70 text-xs md:text-sm">Снижение задержек</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-white/20">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-2 stat-number">500+</div>
+                        <div class="text-white/70 text-xs md:text-sm">Активных компаний</div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Декоративный элемент -->
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
     </section>
 
-    <!-- Платформа -->
-    <section id="platform" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 scroll-fade">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Единая платформа для
-                    <span class="gradient-text">всей логистики</span>
+    <!-- Секция возможностей -->
+    <section id="features" class="py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 scroll-animate">
+                <div class="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-bolt"></i>
+                    <span class="font-semibold">Возможности</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Что делает нашу платформу <span class="text-blue-600">уникальной</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    От поиска поставщика до доставки "до двери" — все в одном интерфейсе
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Комбинация AI, автоматизации и экспертизы в логистике Китай → Россия.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="tech-card rounded-2xl p-8 scroll-fade">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6">
-                        <i class="fas fa-search text-white text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="tech-card bg-white rounded-2xl p-6 md:p-8 scroll-animate">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Поиск и проверка</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">AI-прогнозирование</h3>
                     <p class="text-gray-600 mb-6">
-                        AI-система поиска поставщиков с автоматической проверкой репутации и качества.
+                        Нейросеть анализирует 50+ факторов и предсказывает сроки доставки с точностью 99.2%. 
+                        Упреждает задержки и предлагает альтернативные маршруты.
                     </p>
-                    <div class="flex items-center text-blue-600 font-semibold">
-                        <span>Интеграция с 1688.com</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="text-blue-600 font-semibold flex items-center space-x-2">
+                        <span>Снижение задержек на 35%</span>
+                        <i class="fas fa-chart-line"></i>
                     </div>
                 </div>
                 
-                <div class="tech-card rounded-2xl p-8 scroll-fade">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6">
+                <div class="tech-card bg-white rounded-2xl p-6 md:p-8 scroll-animate">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center mb-6">
                         <i class="fas fa-robot text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI-оптимизация</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Автоматизация документов</h3>
                     <p class="text-gray-600 mb-6">
-                        Алгоритмы машинного обучения для расчета оптимальных маршрутов и таможенных схем.
+                        Робот готовит таможенные декларации, инвойсы, упаковочные листы. 
+                        Интеграция с ФТС России и китайской таможней через API.
                     </p>
-                    <div class="flex items-center text-blue-600 font-semibold">
-                        <span>Снижение стоимости до 30%</span>
-                        <i class="fas fa-chart-line ml-2"></i>
+                    <div class="text-blue-600 font-semibold flex items-center space-x-2">
+                        <span>Экономия 15 часов в неделю</span>
+                        <i class="fas fa-clock"></i>
                     </div>
                 </div>
                 
-                <div class="tech-card rounded-2xl p-8 scroll-fade">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-6">
-                        <i class="fas fa-eye text-white text-2xl"></i>
+                <div class="tech-card bg-white rounded-2xl p-6 md:p-8 scroll-animate">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center mb-6">
+                        <i class="fas fa-map-marked-alt text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Трекинг 24/7</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Трекинг в реальном времени</h3>
                     <p class="text-gray-600 mb-6">
-                        Отслеживание груза в реальном времени с уведомлениями на каждом этапе доставки.
+                        Виртуальная карта маршрутов Китай → Россия с IoT-датчиками. 
+                        Температура, влажность, геолокация — всё в одном интерфейсе.
                     </p>
-                    <div class="flex items-center text-blue-600 font-semibold">
-                        <span>GPS + IoT датчики</span>
-                        <i class="fas fa-satellite ml-2"></i>
+                    <div class="text-blue-600 font-semibold flex items-center space-x-2">
+                        <span>100% прозрачность</span>
+                        <i class="fas fa-eye"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Возможности -->
-    <section id="features" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 scroll-fade">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    <span class="gradient-text">Технологические</span> возможности
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Современные инструменты для автоматизации международной логистики
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="scroll-fade">
-                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                                <i class="fas fa-code text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-900">API First подход</h3>
-                                <p class="text-gray-600">Интеграция с вашей ERP/CRM системой</p>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                                    <i class="fas fa-check text-green-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">REST API</h4>
-                                    <p class="text-gray-600 text-sm">Полный доступ ко всем функциям платформы</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                                    <i class="fas fa-bolt text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">Webhooks</h4>
-                                    <p class="text-gray-600 text-sm">Мгновенные уведомления о статусе груза</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                                    <i class="fas fa-shield-alt text-purple-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">Безопасность</h4>
-                                    <p class="text-gray-600 text-sm">OAuth 2.0 и шифрование данных</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="scroll-fade">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Данные в реальном времени</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Скорость доставки</span>
-                                    <span class="font-bold text-blue-600">24.5 дня</span>
-                                </div>
-                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Точность ETA</span>
-                                    <span class="font-bold text-green-600">94.3%</span>
-                                </div>
-                                <
+    <!-- Секция платформы -->
+    <section id="platform" class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 scroll-animate">
+                <div class="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-desktop
