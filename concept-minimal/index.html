@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeWay Logistics | Минималистичная логистика Китай → Россия</title>
+    <meta name="description" content="Прямая и прозрачная логистика из Китая в Россию. Минималистичный подход, максимальная эффективность.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563EB;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1D4ED8;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .nav-link {
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .testimonial {
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 1.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="py-6 border-b border-gray-200 sticky top-0 bg-white z-50">
+        <div class="container">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shipping-fast text-blue-600"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold text-gray-900">FreeWay Logistics</div>
+                        <div class="text-xs text-gray-500">Китай → Россия</div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="nav-link">Услуги</a>
+                    <a href="#process" class="nav-link">Процесс</a>
+                    <a href="#advantages" class="nav-link">Преимущества</a>
+                    <a href="#contact" class="nav-link">Контакты</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="tel:+78001234567" class="hidden lg:inline text-gray-700 hover:text-blue-600">
+                        +7 (800) 123-45-67
+                    </a>
+                    <button onclick="scrollToContact()" class="btn-primary">
+                        Запросить расчет
+                    </button>
+                    <button class="md:hidden text-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero секция -->
+    <section class="section bg-gray-50">
+        <div class="container">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="section-title">
+                    Прямая логистика
+                    <span class="text-blue-600">Китай → Россия</span>
+                </h1>
+                <p class="section-subtitle">
+                    Минималистичный подход к международной логистике. Прозрачные условия, фиксированные сроки, полный контроль.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button onclick="scrollToContact()" class="btn-primary">
+                        Рассчитать стоимость
+                    </button>
+                    <a href="https://wa.me/78001234567" target="_blank" class="btn-outline">
+                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Поставок</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-number">98.7%</div>
+                        <div class="stat-label">В срок</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Поддержка</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Отраслей</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Наши услуги</h2>
+                <p class="section-subtitle">Полный цикл логистических услуг для вашего бизнеса</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Поиск поставщиков</h3>
+                    <p class="text-gray-600 mb-4">
+                        Находим надежных производителей в Китае, проверяем качество, ведем переговоры.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Аудит фабрик</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Контроль качества</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Переговоры о цене</span>
+                        </li>
+                    </ul>
+                    <div class="text-blue-600 font-semibold">От 500$</div>
+                </div>
+                
+                <div class="card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-warehouse text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Склад в Гуанчжоу</h3>
+                    <p class="text-gray-600 mb-4">
+                        Собственный складской комплекс для приемки, хранения и консолидации грузов.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Приемка товара</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Хранение до 90 дней</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Консолидация</span>
+                        </li>
+                    </ul>
+                    <div class="text-blue-600 font-semibold">От 2$/м³/день</div>
+                </div>
+                
+                <div class="card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-passport text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Таможенное оформление</h3>
+                    <p class="text-gray-600 mb-4">
+                        Полное таможенное оформление "под ключ" с гарантией прохождения проверок.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Подготовка документов</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Расчет платежей</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Сопровождение</span>
+                        </li>
+                    </ul>
+                    <div class="text-blue-600 font-semibold">От 300$</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Процесс -->
+    <section id="process" class="section bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Процесс работы</h2>
+                <p class="section-subtitle">6 простых шагов от заявки до получения груза</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-bold mb-2">Консультация и расчет</h3>
+                    <p class="text-gray-600">Обсуждаем ваши потребности, рассчитываем стоимость и сроки доставки.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-bold mb-2">Поиск и проверка поставщика</h3>
+                    <p class="text-gray-600">Находим надежного производителя, проверяем качество товара.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-bold mb-2">Выкуп и доставка на склад</h3>
+                    <p class="text-gray-600">Организуем выкуп товара и доставку на наш склад в Гуанчжоу.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-bold mb-2">Консолидация и упаковка</h3>
+                    <p class="text-gray-600">Консолидируем несколько поставок, упаковываем для безопасной перевозки.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="text-xl font-bold mb-2">Таможенное оформление</h3>
+                    <p class="text-gray-600">Оформляем все таможенные документы, оплачиваем пошлины.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3 class="text-xl font-bold mb-2">Доставка "до двери"</h3>
+                    <p class="text-gray-600">Доставляем груз в указанный город России, передаем вам.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="advantages" class="section">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Наши преимущества</h2>
+                <p class="section-subtitle">Почему компании выбирают FreeWay Logistics</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4">Прозрачность</h3>
+                    <p class="text-gray-600 mb-4">
+                        Никаких скрытых платежей. Вы видите полную стоимость на каждом этапе.
+                    </p>
+                    <div class="flex items-center text-blue-600">
+                        <i class="fas fa-eye mr-2"></i>
+                        <span>Подробный отчет по каждой операции</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4">Контроль качества</h3>
+                    <p class="text-gray-600 mb-4">
+                        На каждом этапе наши специалисты контролируют качество товара и сроки.
+                    </p>
+                    <div class="flex items-center text-blue-600">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span>Фото и видео отчеты</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-4">Опыт</h3>
+                    <p class="text-gray-600 mb-4">
+                        Более 5000 успешных поставок в 12 отраслях промышленности.
+                    </p>
+                    <div class="flex items-center text-blue-600">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        <span>98.7% грузов доставлены вовремя</
